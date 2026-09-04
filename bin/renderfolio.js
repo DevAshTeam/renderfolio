@@ -1,5 +1,6 @@
 import { Command } from 'commander';
 import { newCommand } from '../src/commands/new.js';
+import { renderCommand } from '../src/commands/render.js';
 
 const program = new Command();
 
@@ -14,5 +15,11 @@ program
   .argument('<name>', 'Your name')
   .action(newCommand);
 
+program
+  .command('render')
+  .description('Render Markdown to HTML Portfolio')
+  .argument('<file>', 'Markdown file to render')
+  .option('-o, --output <dir>', 'Output directory', './output')
+  .action(renderCommand);
 
 program.parse();
