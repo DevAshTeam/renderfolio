@@ -3,7 +3,8 @@ import path from 'path';
 import chalk from 'chalk';
 import MarkdownIt from 'markdown-it';
 import matter from 'gray-matter';
-import { generateHTML } from '../renderer.js';
+import { chromium } from 'playwright';
+import { generateHTML, generateResumeHTML } from '../renderer.js';
 
 export async function renderCommand(file, options) {
     if (!(await fs.pathExists(file))) {
@@ -38,6 +39,38 @@ export async function renderCommand(file, options) {
   await fs.writeFile(htmlPath, html);
   console.log(chalk.green(`✔ HTML portfolio → ${htmlPath}`));
 
+  //Generate PDF Resume
+  if (options.pdf) {
+    const resumeHtml = generateResumeHTML(data);
+    const tempResumePath = path.join(outputDir, `${baseName}-resume-temp.html`);
+    await fs.writeFile(tempResumePath, resumeHtml);
+
+    const pdfPath = path.join(outputDir, `${baseName}.pdf`);
+    console.log(chalk.blue('⏳ Generating clean resume PDF...'));
+
+    const browser = await chromium.launch();
+    const page = await browser.newPage();
+    await page.goto(`file://${path.resolve(tempResumePath)}`, {
+      waitUntil: 'networkidle',
+    });
+
+    await page.pdf({
+      path: pdfPath,
+      format: 'A4',
+      printBackground: true,
+      margin: {
+        top: '15mm',
+        right: '15mm',
+        bottom: '15mm',
+        left: '15mm',
+      },
+    });
+
+    await browser.close();
+    await fs.remove(tempResumePath);
+
+    console.log(chalk.green(`✔ Resume PDF     → ${pdfPath}`));
+  }
   
   console.log(chalk.blue('\nDone!'));
     

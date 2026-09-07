@@ -20,6 +20,7 @@ program
   .description('Render Markdown to HTML Portfolio')
   .argument('<file>', 'Markdown file to render')
   .option('-o, --output <dir>', 'Output directory', './output')
+  .option('--pdf', 'Also generate a clean resume PDF')
   .action(renderCommand);
 
 program.parse();

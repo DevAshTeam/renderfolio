@@ -53,4 +53,5 @@ A simple and fast file server.
   console.log(chalk.green(`✔ Created ${fileName}`));
   console.log(chalk.gray(`\nNext steps:`));
   console.log(chalk.gray(`  renderfolio render ${fileName}`));
+  console.log(chalk.gray(`  renderfolio render ${fileName} --pdf`));
 }

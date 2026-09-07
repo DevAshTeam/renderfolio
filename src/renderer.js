@@ -2042,3 +2042,127 @@ export function generateHTML({
 
 </html>`;
 }
+
+
+// resume (PDF)
+export function generateResumeHTML({ title, name, subtitle, body, social = [] }) {
+  const socialLinks = social
+    .map(s => `<a href="${s.url}">${s.label}</a>`)
+    .join('&nbsp;&nbsp;·&nbsp;&nbsp;');
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>${title}</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-size: 10.5pt;
+      line-height: 1.5;
+      color: #1a1a1a;
+      background: white;
+    }
+
+    .page {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 50px;
+    }
+
+    header {
+      margin-bottom: 24px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid #111;
+    }
+
+    header h1 {
+      font-size: 22pt;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 3px;
+    }
+
+    header .subtitle {
+      font-size: 11pt;
+      color: #444;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    header .social {
+      font-size: 9.5pt;
+      color: #555;
+    }
+
+    header .social a {
+      color: #111;
+      text-decoration: none;
+      border-bottom: 1px solid #aaa;
+    }
+
+    h2 {
+      font-size: 11pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin: 20px 0 7px;
+      color: #111;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 3px;
+    }
+
+    h3 {
+      font-size: 11pt;
+      font-weight: 600;
+      margin: 11px 0 2px;
+      color: #111;
+    }
+
+    p {
+      margin-bottom: 5px;
+      color: #333;
+    }
+
+    ul {
+      margin: 3px 0 9px 18px;
+      color: #333;
+    }
+
+    li { margin-bottom: 2px; }
+
+    a {
+      color: #111;
+      text-decoration: none;
+      border-bottom: 1px solid #999;
+    }
+
+    footer {
+      margin-top: 28px;
+      font-size: 8.5pt;
+      color: #888;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <h1>${name}</h1>
+      <p class="subtitle">${subtitle}</p>
+      ${social.length ? `<div class="social">${socialLinks}</div>` : ''}
+    </header>
+
+    ${body}
+
+    <footer>
+      Generated with renderfolio
+    </footer>
+  </div>
+</body>
+</html>`;
+}
