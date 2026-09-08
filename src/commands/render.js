@@ -32,12 +32,13 @@ export async function renderCommand(file, options) {
     body: bodyHtml,
     social: frontmatter.social || [],
   };
+  const theme = (options.theme || 'noir').toLowerCase();
 
   //Generate HTML portfolio 
-  const html = generateHTML(data);
+  const html = generateHTML(data, theme);
   const htmlPath = path.join(outputDir, `${baseName}.html`);
   await fs.writeFile(htmlPath, html);
-  console.log(chalk.green(`✔ HTML portfolio → ${htmlPath}`));
+  console.log(chalk.green(`✔ HTML portfolio → ${htmlPath}  (theme: ${theme})`));
 
   //Generate PDF Resume
   if (options.pdf) {

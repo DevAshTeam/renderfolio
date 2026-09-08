@@ -1,4 +1,20 @@
-export function generateHTML({
+// portfolio (HTML)
+export function generateHTML(data, theme = 'noir') {
+  switch (theme) {
+    case 'terminal':
+      return generateTerminalHTML(data);
+    case 'slate':
+      return generateSlateHTML(data);
+    case 'noir':
+    default:
+      return generateNoirHTML(data);
+  }
+}
+
+// ============================================
+// 1. NOIR 
+// ============================================
+export function generateNoirHTML({
   title,
   name,
   subtitle,
@@ -115,7 +131,6 @@ export function generateHTML({
 
       --glass: rgba(255, 255, 255, 0.03);
 
-
       --timeline: color-mix(
         in srgb,
         var(--accent) 28%,
@@ -143,7 +158,6 @@ export function generateHTML({
 
       --section-space:
         clamp(34px, 4vw, 50px);
-
 
       --timeline-x: 10px;
 
@@ -2002,7 +2016,7 @@ export function generateHTML({
         Built with
 
         <a
-          href="https://github.com/DevAshTeam/renderfolio"
+          href="https://github.com/yourusername/renderfolio"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -2040,6 +2054,579 @@ export function generateHTML({
 
 </body>
 
+</html>`;
+}
+
+// ============================================
+// 2. TERMINAL 
+// ============================================
+function generateTerminalHTML({ title, name, subtitle, body, social = [] }) {
+  const escapeHTML = (value = '') =>
+    String(value)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+
+  const safeURL = (value = '') => {
+    try {
+      const url = new URL(value, 'https://example.com');
+      if (!['http:', 'https:', 'mailto:'].includes(url.protocol)) return '#';
+      return escapeHTML(value);
+    } catch {
+      return '#';
+    }
+  };
+
+  const socialLinks = (social || [])
+    .filter((item) => item?.url && item?.label)
+    .map(
+      ({ url, label }) => `
+        <a href="${safeURL(url)}" target="_blank" rel="noopener noreferrer" class="social-link">
+          ${escapeHTML(label)}
+        </a>`
+    )
+    .join('<span class="separator" aria-hidden="true">·</span>');
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="${escapeHTML(subtitle)}" />
+  <meta name="theme-color" content="#0c0c0c" />
+  <title>${escapeHTML(title)}</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #0c0c0c;
+      --text: #e4e4e4;
+      --muted: #6e6e6e;
+      --accent: #00ff9c;
+      --accent-dim: rgba(0, 255, 156, 0.12);
+      --dim: #1a1a1a;
+      --border: #222;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 15.5px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 48px 32px 90px;
+      position: relative;
+    }
+
+    /* Vertical Portfolio tag */
+    .hero-tag {
+      position: absolute;
+      top: 32px;
+      right: 0;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--muted);
+      opacity: 0.45;
+      padding-bottom: 40px;
+    }
+
+    /* Hero */
+    .hero {
+      margin-bottom: 64px;
+      padding-right: 40px;
+    }
+
+    .hero .prompt {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--accent);
+      margin-bottom: 16px;
+      letter-spacing: 0.04em;
+    }
+
+    .hero h1 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(2.6rem, 7vw, 4.2rem);
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 14px;
+      color: var(--text);
+    }
+
+    .hero .subtitle {
+      color: var(--muted);
+      font-size: 1.1rem;
+      max-width: 480px;
+      font-weight: 300;
+    }
+
+    /* Content */
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+    }
+
+    .content h2 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+
+    .content h3 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.35rem;
+      font-weight: 500;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .content p {
+      color: var(--muted);
+      max-width: 580px;
+      margin-bottom: 8px;
+      font-size: 0.98rem;
+      line-height: 1.7;
+    }
+
+    .content ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .content li {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      padding: 5px 13px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--text);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .content a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
+      border-bottom: 1px dashed var(--accent);
+      transition: border-style 0.2s;
+    }
+
+    .content a:hover {
+      border-bottom-style: solid;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 72px;
+      padding-top: 24px;
+      border-top: 1px solid var(--dim);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.88rem;
+      color: var(--muted);
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .social {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2px;
+    }
+
+    .social-link {
+      color: var(--text);
+      text-decoration: none;
+      padding: 4px 8px;
+      transition: color 0.2s;
+    }
+
+    .social-link:hover {
+      color: var(--accent);
+    }
+
+    .separator {
+      margin: 0 4px;
+      opacity: 0.4;
+    }
+
+    .brand a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .page {
+        padding: 40px 22px 80px;
+      }
+
+      .hero-tag {
+        display: none;
+      }
+
+      .hero {
+        padding-right: 0;
+        margin-bottom: 48px;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .content {
+        gap: 40px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="hero-tag" aria-hidden="true">Portfolio</div>
+
+    <header class="hero">
+      <div class="prompt">~/portfolio</div>
+      <h1>${escapeHTML(name)}</h1>
+      <p class="subtitle">${escapeHTML(subtitle)}</p>
+    </header>
+
+    <main class="content">
+      ${body}
+    </main>
+
+    <footer>
+      <div class="social">
+        ${socialLinks}
+      </div>
+      <div class="brand">
+        Built with <a href="https://github.com/yourusername/renderfolio" target="_blank" rel="noopener">renderfolio</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>`;
+}
+
+// ============================================
+// 3. SLATE 
+// ============================================
+function generateSlateHTML({ title, name, subtitle, body, social = [] }) {
+  const escapeHTML = (value = '') =>
+    String(value)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+
+  const safeURL = (value = '') => {
+    try {
+      const url = new URL(value, 'https://example.com');
+      if (!['http:', 'https:', 'mailto:'].includes(url.protocol)) return '#';
+      return escapeHTML(value);
+    } catch {
+      return '#';
+    }
+  };
+
+  const socialLinks = (social || [])
+    .filter((item) => item?.url && item?.label)
+    .map(
+      ({ url, label }) => `
+        <a href="${safeURL(url)}" target="_blank" rel="noopener noreferrer" class="social-link">
+          ${escapeHTML(label)}
+        </a>`
+    )
+    .join('<span class="separator" aria-hidden="true">/</span>');
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="${escapeHTML(subtitle)}" />
+  <meta name="theme-color" content="#0f1419" />
+  <title>${escapeHTML(title)}</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #0f1419;
+      --surface: #1a2332;
+      --text: #e7ecf3;
+      --muted: #8b9bb4;
+      --accent: #5b9fd4;
+      --border: #243044;
+      --dim: #1c2636;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 15.5px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 48px 32px 90px;
+      position: relative;
+    }
+
+    /* Vertical Portfolio tag */
+    .hero-tag {
+      position: absolute;
+      top: 32px;
+      right: 0;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      opacity: 0.4;
+      padding-bottom: 40px;
+    }
+
+    /* Hero */
+    .hero {
+      margin-bottom: 64px;
+      padding-right: 40px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.7rem, 7vw, 4.3rem);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .hero .subtitle {
+      color: var(--muted);
+      font-size: 1.12rem;
+      max-width: 480px;
+      font-weight: 400;
+    }
+
+    /* Content */
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+    }
+
+    .content h2 {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+
+    .content h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .content p {
+      color: var(--muted);
+      max-width: 580px;
+      margin-bottom: 8px;
+      font-size: 0.98rem;
+      line-height: 1.7;
+    }
+
+    .content ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .content li {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 5px 14px;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+
+    .content a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    .content a:hover {
+      color: #7eb8e8;
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 72px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9rem;
+      color: var(--muted);
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .social {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2px;
+    }
+
+    .social-link {
+      color: var(--text);
+      text-decoration: none;
+      padding: 4px 8px;
+      transition: color 0.2s;
+    }
+
+    .social-link:hover {
+      color: var(--accent);
+    }
+
+    .separator {
+      margin: 0 6px;
+      opacity: 0.4;
+    }
+
+    .brand a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .page {
+        padding: 40px 22px 80px;
+      }
+
+      .hero-tag {
+        display: none;
+      }
+
+      .hero {
+        padding-right: 0;
+        margin-bottom: 48px;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .content {
+        gap: 40px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 2.25rem;
+      }
+
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="hero-tag" aria-hidden="true">Portfolio</div>
+
+    <header class="hero">
+      <h1>${escapeHTML(name)}</h1>
+      <p class="subtitle">${escapeHTML(subtitle)}</p>
+    </header>
+
+    <main class="content">
+      ${body}
+    </main>
+
+    <footer>
+      <div class="social">
+        ${socialLinks}
+      </div>
+      <div class="brand">
+        Built with <a href="https://github.com/yourusername/renderfolio" target="_blank" rel="noopener">renderfolio</a>
+      </div>
+    </footer>
+  </div>
+</body>
 </html>`;
 }
 
