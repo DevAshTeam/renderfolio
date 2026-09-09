@@ -54,5 +54,5 @@ A simple and fast file server.
   console.log(chalk.gray(`\nNext steps:`));
   console.log(chalk.gray(`  renderfolio render ${fileName}`));
   console.log(chalk.gray(`  renderfolio render ${fileName} --pdf`));
-  console.log(chalk.gray(`  renderfolio render ${fileName} --theme themName(terminal|slate - default theme: noir)`));
+  console.log(chalk.gray(`  renderfolio render ${fileName} --theme themName(terminal|slate|paper|rose|froge - default theme: noir)`));
 }

@@ -23,7 +23,7 @@ program
   .option('--pdf', 'Also generate a clean resume PDF')
   .option(
     '-t, --theme <name>',
-    'Theme: noir | terminal | slate ',
+    'Theme: noir | terminal | slate | paper | rose | forge',
     'noir'
   )
   .action(renderCommand);
