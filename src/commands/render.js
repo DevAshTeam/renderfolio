@@ -49,7 +49,16 @@ export async function renderCommand(file, options) {
     const pdfPath = path.join(outputDir, `${baseName}.pdf`);
     console.log(chalk.blue('⏳ Generating clean resume PDF...'));
 
-    const browser = await chromium.launch();
+    const browser = await chromium.launch({
+      executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH || '/usr/bin/chromium',
+      headless: true,
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+        '--disable-gpu',
+      ],
+    });
     const page = await browser.newPage();
     await page.goto(`file://${path.resolve(tempResumePath)}`, {
       waitUntil: 'networkidle',
