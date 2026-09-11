@@ -1,6 +1,7 @@
 services:
   renderfolio:
     container_name: renderfolio
+    user: "${CONTAINER_UID:-1001}:${CONTAINER_GID:-1001}"
     build: .
     image: renderfolio:1.0.0
     working_dir: /data            

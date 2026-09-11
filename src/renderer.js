@@ -5,6 +5,12 @@ export function generateHTML(data, theme = 'noir') {
       return generateTerminalHTML(data);
     case 'slate':
       return generateSlateHTML(data);
+    case 'paper':
+      return generatePaperHTML(data);
+    case 'rose':
+      return generateRoseHTML(data);
+    case 'forge':
+      return generateForgeHTML(data);
     case 'noir':
     default:
       return generateNoirHTML(data);
