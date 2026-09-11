@@ -1,0 +1,13 @@
+services:
+  renderfolio:
+    container_name: renderfolio
+    build: .
+    image: renderfolio:1.0.0
+    working_dir: /data            
+    volumes:
+      - ./portfolio:/data        
+    environment:
+      - PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
+      - PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium
+    shm_size: "2gb"
+

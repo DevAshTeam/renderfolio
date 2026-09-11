@@ -19,7 +19,6 @@ program
   .command('render')
   .description('Render Markdown to HTML Portfolio')
   .argument('<file>', 'Markdown file to render')
-  .option('-o, --output <dir>', 'Output directory', './output')
   .option('--pdf', 'Also generate a clean resume PDF')
   .option(
     '-t, --theme <name>',

@@ -11,7 +11,7 @@ export async function renderCommand(file, options) {
         console.error(chalk.red(`✖ File not found: ${file}`));
         process.exit(1);
     }
-    const outputDir = options.output || './output';
+    const outputDir = './output';
     await fs.ensureDir(outputDir);
 
     const raw = await fs.readFile(file, 'utf-8');
@@ -55,7 +55,6 @@ export async function renderCommand(file, options) {
       args: [
         '--no-sandbox',
         '--disable-setuid-sandbox',
-        '--disable-dev-shm-usage',
         '--disable-gpu',
       ],
     });
