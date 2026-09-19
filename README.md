@@ -31,12 +31,12 @@ printf 'CONTAINER_UID=%s\nCONTAINER_GID=%s\n' "$(id -u)" "$(id -g)" > .env
 
 ```bash
 # 1. Create a template → portfolio/john_doe_portfolio.md
-docker compose run --rm renderfolio new "John Doe"
+docker compose run --rm devashteam/renderfolio new "John Doe"
 
 # 2. Edit portfolio/john_doe_portfolio.md in any editor
 
 # 3. Render → portfolio/output/
-docker compose run --rm renderfolio render john_doe_portfolio.md --theme terminal --pdf
+docker compose run --rm devashteam/renderfolio render john_doe_portfolio.md --theme terminal --pdf
 ```
 
 Output lands in `portfolio/output/`: `john_doe_portfolio.html` (+ `john_doe_portfolio.pdf` with `--pdf`).
