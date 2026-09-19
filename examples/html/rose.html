@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Full-Stack Developer" />
+  <meta name="theme-color" content="#fdf8f6" />
+  <title>john doe</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #fdf8f6;
+      --text: #2c1e1e;
+      --muted: #8a6e6e;
+      --accent: #e8919a;
+      --accent-soft: #f8e4e6;
+      --border: #f0e0e0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 52px 32px 100px;
+      position: relative;
+    }
+
+    /* Vertical Portfolio tag */
+    .hero-tag {
+      position: absolute;
+      top: 36px;
+      right: 0;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      opacity: 0.4;
+      padding-bottom: 40px;
+    }
+
+    /* Hero */
+    .hero {
+      margin-bottom: 56px;
+      padding-right: 40px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(3.1rem, 8.5vw, 5rem);
+      font-weight: 600;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+      color: var(--text);
+    }
+
+    .hero .subtitle {
+      color: var(--muted);
+      font-size: 1.15rem;
+      font-weight: 300;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+
+    .hero .divider {
+      width: 48px;
+      height: 2px;
+      background: var(--accent);
+      margin: 28px auto 0;
+      border-radius: 2px;
+    }
+
+    /* Content */
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+    }
+
+    .content h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+      text-align: center;
+    }
+
+    .content h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.55rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text);
+      text-align: center;
+    }
+
+    .content p {
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto 8px;
+      text-align: center;
+      font-weight: 300;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .content ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .content li {
+      background: var(--accent-soft);
+      color: var(--text);
+      padding: 6px 16px;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 400;
+    }
+
+    .content a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.25s;
+      display: inline-block;
+      margin-top: 4px;
+    }
+
+    .content a:hover {
+      border-bottom-color: var(--accent);
+    }
+
+    /* Center project blocks */
+    .content h3,
+    .content h3 + p,
+    .content h3 + p + a {
+      text-align: center;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 70px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9rem;
+      color: var(--muted);
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .social {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2px;
+    }
+
+    .social-link {
+      color: var(--text);
+      text-decoration: none;
+      padding: 4px 8px;
+      transition: color 0.2s;
+    }
+
+    .social-link:hover {
+      color: var(--accent);
+    }
+
+    .separator {
+      margin: 0 8px;
+      color: var(--accent);
+      opacity: 0.7;
+    }
+
+    .brand a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .page {
+        padding: 40px 22px 80px;
+      }
+
+      .hero-tag {
+        display: none;
+      }
+
+      .hero {
+        padding-right: 0;
+        margin-bottom: 48px;
+      }
+
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+
+      .content {
+        gap: 40px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="hero-tag" aria-hidden="true">Portfolio</div>
+
+    <header class="hero">
+      <h1>john doe</h1>
+      <p class="subtitle">Full-Stack Developer</p>
+      <div class="divider"></div>
+    </header>
+
+    <main class="content">
+      <h2>About</h2>
+<p>Short introduction about yourself.</p>
+<h2>Skills</h2>
+<ul>
+<li>JavaScript / TypeScript</li>
+<li>Node.js</li>
+<li>Docker &amp; DevOps</li>
+<li>MongoDB / ScyllaDB / PostgreSQL</li>
+<li>Cloudflare Workers</li>
+</ul>
+<h2>Projects</h2>
+<h3>Project One</h3>
+<p>Short description of the project.<br>
+<a href="https://github.com/yourusername/project-one">GitHub</a></p>
+<h3>Project Two</h3>
+<p>Short description of the project.<br>
+<a href="https://github.com/yourusername/project-two">GitHub</a></p>
+<h3>Personal Blog</h3>
+<p>I write about backend architecture and databases.<br>
+<a href="https://yourblog.com">Visit Website</a></p>
+<h3>Live Demo - File Server</h3>
+<p>A simple and fast file server.<br>
+<a href="https://demo.yoursite.com">Live Demo</a> · <a href="https://github.com/yourusername/file-server">Source Code</a></p>
+
+    </main>
+
+    <footer>
+      <div class="social">
+        
+        <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" class="social-link">
+          LinkedIn
+        </a><span class="separator" aria-hidden="true">♡</span>
+        <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" class="social-link">
+          GitHub
+        </a><span class="separator" aria-hidden="true">♡</span>
+        <a href="https://yourwebsite.com" target="_blank" rel="noopener noreferrer" class="social-link">
+          Website
+        </a>
+      </div>
+      <div class="brand">
+        Built with <a href="https://github.com/DevAshTeam/renderfolio" target="_blank" rel="noopener">renderfolio</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

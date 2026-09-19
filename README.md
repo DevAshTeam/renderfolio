@@ -1,4 +1,5 @@
 [![CI](https://github.com/DevAshTeam/renderfolio/actions/workflows/test.yml/badge.svg)](https://github.com/DevAshTeam/renderfolio/actions/workflows/test.yml)
+[![Live demo](https://img.shields.io/badge/demo-GitHub_Pages-2ea44f)](https://DevAshTeam.github.io/renderfolio/)
 
 # Renderfolio
 
@@ -96,6 +97,10 @@ Short description.
 | **No output visible**                         | It's in `portfolio/output/`; anything written elsewhere in the container is discarded on exit |
 | **`docker compose up` prints help and exits** | Expected — this is a one-shot CLI; use `docker compose run --rm renderfolio <command>` |
 | **Changed source code?**                      | Rebuild first: `docker compose build`                        |
+
+## Live demo
+
+Rendered from one markdown file — [examples/john_doe_portfolio.md](https://github.com/examples/john_doe_portfolio.md) — in six themes:   [noir](https://DevAshTeam.github.io/renderfolio/noir.html) ·[terminal](https://DevAshTeam.github.io/renderfolio/terminal.html) ·[slate](https://DevAshTeam.github.io/renderfolio/slate.html) ·[paper](https://DevAshTeam.github.io/renderfolio/paper.html) ·[rose](https://DevAshTeam.github.io/renderfolio/rose.html) ·[forge](https://DevAshTeam.github.io/renderfolio/forge.html)
 
 ## License
 

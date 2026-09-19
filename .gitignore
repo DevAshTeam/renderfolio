@@ -3,3 +3,5 @@ portfolio/
 .gitignore
 .dockerignore
 .env
+*.log
+.DS_Store
