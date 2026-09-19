@@ -100,7 +100,7 @@ Short description.
 
 ## Live demo
 
-Rendered from one markdown file — [examples/john_doe_portfolio.md](https://github.com/examples/john_doe_portfolio.md) — in six themes:   [noir](https://DevAshTeam.github.io/renderfolio/noir.html) ·[terminal](https://DevAshTeam.github.io/renderfolio/terminal.html) ·[slate](https://DevAshTeam.github.io/renderfolio/slate.html) ·[paper](https://DevAshTeam.github.io/renderfolio/paper.html) ·[rose](https://DevAshTeam.github.io/renderfolio/rose.html) ·[forge](https://DevAshTeam.github.io/renderfolio/forge.html)
+Rendered from one markdown file — [examples/john_doe_portfolio.md](https://github.com/DevAshTeam/renderfolio/tree/master/examples/john_doe_portfolio.md) — in six themes:   [noir](https://DevAshTeam.github.io/renderfolio/noir.html) ·[terminal](https://DevAshTeam.github.io/renderfolio/terminal.html) ·[slate](https://DevAshTeam.github.io/renderfolio/slate.html) ·[paper](https://DevAshTeam.github.io/renderfolio/paper.html) ·[rose](https://DevAshTeam.github.io/renderfolio/rose.html) ·[forge](https://DevAshTeam.github.io/renderfolio/forge.html)
 
 ## License
 
