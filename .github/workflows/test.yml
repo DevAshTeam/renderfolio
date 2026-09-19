@@ -48,13 +48,13 @@ jobs:
         uses: docker/login-action@v4.6.0
         with:
           registry: ghcr.io
-          username: devashteam
+          username: ${{ vars.REGISTRY_USER }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Log into Docker Hub
         uses: docker/login-action@v4.6.0
         with:
-          username: devashteam
+          username: ${{ vars.REGISTRY_USER }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and push Docker image
@@ -62,8 +62,8 @@ jobs:
         with:
           context: .
           tags: |
-            ghcr.io/${{ github.repository }}:v1.0.0
-            ghcr.io/${{ github.repository }}:latest
-            docker.io/${{ github.repository }}:v1.0.0
-            docker.io/${{ github.repository }}:latest
+            ghcr.io/${{vars.IMAGE_NAME}}:v1.0.0
+            ghcr.io/${{vars.IMAGE_NAME}}:latest
+            docker.io/${{vars.IMAGE_NAME}}:v1.0.0
+            docker.io/${{vars.IMAGE_NAME}}:latest
           
