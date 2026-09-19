@@ -2022,7 +2022,7 @@ export function generateNoirHTML({
         Built with
 
         <a
-          href="https://github.com/yourusername/renderfolio"
+          href="https://github.com/DevAshTeam/renderfolio"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -2346,7 +2346,7 @@ function generateTerminalHTML({ title, name, subtitle, body, social = [] }) {
         ${socialLinks}
       </div>
       <div class="brand">
-        Built with <a href="https://github.com/yourusername/renderfolio" target="_blank" rel="noopener">renderfolio</a>
+        Built with <a href="https://github.com/DevAshTeam/renderfolio" target="_blank" rel="noopener">renderfolio</a>
       </div>
     </footer>
   </div>
@@ -2628,7 +2628,7 @@ function generateSlateHTML({ title, name, subtitle, body, social = [] }) {
         ${socialLinks}
       </div>
       <div class="brand">
-        Built with <a href="https://github.com/yourusername/renderfolio" target="_blank" rel="noopener">renderfolio</a>
+        Built with <a href="https://github.com/DevAshTeam/renderfolio" target="_blank" rel="noopener">renderfolio</a>
       </div>
     </footer>
   </div>
@@ -2909,7 +2909,7 @@ function generatePaperHTML({ title, name, subtitle, body, social = [] }) {
         ${socialLinks}
       </div>
       <div class="brand">
-        Built with <a href="https://github.com/yourusername/renderfolio" target="_blank" rel="noopener">renderfolio</a>
+        Built with <a href="https://github.com/DevAshTeam/renderfolio" target="_blank" rel="noopener">renderfolio</a>
       </div>
     </footer>
   </div>
@@ -3218,7 +3218,7 @@ function generateRoseHTML({ title, name, subtitle, body, social = [] }) {
         ${socialLinks}
       </div>
       <div class="brand">
-        Built with <a href="https://github.com/yourusername/renderfolio" target="_blank" rel="noopener">renderfolio</a>
+        Built with <a href="https://github.com/DevAshTeam/renderfolio" target="_blank" rel="noopener">renderfolio</a>
       </div>
     </footer>
   </div>
@@ -3526,7 +3526,7 @@ function generateForgeHTML({ title, name, subtitle, body, social = [] }) {
         ${socialLinks}
       </div>
       <div class="brand">
-        Built with <a href="https://github.com/yourusername/renderfolio" target="_blank" rel="noopener">renderfolio</a>
+        Built with <a href="https://github.com/DevAshTeam/renderfolio" target="_blank" rel="noopener">renderfolio</a>
       </div>
     </footer>
   </div>
