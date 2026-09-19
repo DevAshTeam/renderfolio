@@ -79,6 +79,13 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+      - name: Log into GHCR
+        uses: docker/login-action@v4.6.0
+        with:
+          registry: ghcr.io
+          username: ${{ vars.REGISTRY_USER }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          
       - name: Smoke test — CLI entrypoint
         run: docker run --rm ghcr.io/${{ vars.IMAGE_NAME }} --help
 
