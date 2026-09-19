@@ -18,6 +18,7 @@ jobs:
       fail-fast: false
       matrix:
         node: [22, 24]
+        
     steps:
       - name: Checkout code
         uses: actions/checkout@v7
@@ -40,6 +41,7 @@ jobs:
       contents: read
       packages: write
     runs-on: ubuntu-latest
+    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
@@ -71,9 +73,15 @@ jobs:
             docker.io/${{vars.IMAGE_NAME}}:v1.0.0
             docker.io/${{vars.IMAGE_NAME}}:latest
 
+  test-builded-image:
+    name: Testing the image
+    needs: [test,build-push-image]
+    runs-on: ubuntu-latest
+    
+    steps:
       - name: Smoke test — CLI entrypoint
-        run: docker run --rm ${{ vars.IMAGE_NAME }} --help
+        run: docker run --rm ghcr.io/${{ vars.IMAGE_NAME }} --help
 
       - name: Run full test suite inside the image
-        run: docker run --rm --entrypoint sh ${{ vars.IMAGE_NAME }} -c "cd /app && npm test"
+        run: docker run --rm --entrypoint sh ghcr.io/${{ vars.IMAGE_NAME }} -c "cd /app && npm test"
           
