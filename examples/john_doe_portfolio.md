@@ -3,16 +3,16 @@ name: "john doe"
 title: "Full-Stack Developer"
 social:
   - label: LinkedIn
-    url: https://linkedin.com/in/yourusername
+    url: https://linkedin.com/in/johndoe
   - label: GitHub
-    url: https://github.com/yourusername
+    url: https://github.com/johndoe
   - label: Website
-    url: https://yourwebsite.com
+    url: https://johndoe.com
 ---
 
 ## About
 
-Short introduction about yourself.
+Full-stack developer focused on backend architecture, databases, and developer tooling.I like small teams, boring technology, and shipping things that work.
 
 ## Skills
 
@@ -26,16 +26,16 @@ Short introduction about yourself.
 
 ### Project One
 Short description of the project.  
-[GitHub](https://github.com/yourusername/project-one)
+[GitHub](https://github.com/johndoe/project-one)
 
 ### Project Two
 Short description of the project.  
-[GitHub](https://github.com/yourusername/project-two)
+[GitHub](https://github.com/john/projectdoe-two)
 
 ### Personal Blog
 I write about backend architecture and databases.  
-[Visit Website](https://yourblog.com)
+[Visit Website](https://johndoe.com)
 
 ### Live Demo - File Server
 A simple and fast file server.  
-[Live Demo](https://demo.yoursite.com) · [Source Code](https://github.com/yourusername/file-server)
+[Live Demo](https://demo.johndoe.com) · [Source Code](https://github.com/johndoe/file-server)
