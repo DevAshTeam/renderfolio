@@ -36,6 +36,9 @@ jobs:
   build-push-image:
     name: Build Docker image
     needs: [test]
+    permissions:
+      contents: read
+      packages: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -61,6 +64,7 @@ jobs:
         uses: docker/build-push-action@v7.4.0
         with:
           context: .
+          push: true
           tags: |
             ghcr.io/${{vars.IMAGE_NAME}}:v1.0.0
             ghcr.io/${{vars.IMAGE_NAME}}:latest
