@@ -70,4 +70,10 @@ jobs:
             ghcr.io/${{vars.IMAGE_NAME}}:latest
             docker.io/${{vars.IMAGE_NAME}}:v1.0.0
             docker.io/${{vars.IMAGE_NAME}}:latest
+
+      - name: Smoke test — CLI entrypoint
+        run: docker run --rm ${{ vars.IMAGE_NAME }} --help
+
+      - name: Run full test suite inside the image
+        run: docker run --rm --entrypoint sh ${{ vars.IMAGE_NAME }} -c "cd /app && npm test"
           
