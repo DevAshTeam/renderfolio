@@ -1,3 +1,5 @@
+[![CI](https://github.com/DevAshTeam/renderfolio/actions/workflows/test.yml/badge.svg)](https://github.com/DevAshTeam/renderfolio/actions/workflows/test.yml)
+
 # Renderfolio
 
 Turn a Markdown file into a themed HTML portfolio — and optionally a clean PDF resume. Ships as a Docker image: no Node.js or Chromium needed on your machine.
