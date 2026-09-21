@@ -11,4 +11,21 @@ services:
       - PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
       - PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium
     shm_size: "2gb"
-
+  web:
+    container_name: web
+    build: .
+    image: renderfolio:1.0.0          
+    entrypoint: ["node", "/app/web/server.js"]   
+    ports:
+      - "3000:3000"
+    working_dir: /data               
+    user: "${CONTAINER_UID:-1001}:${CONTAINER_GID:-1001}"
+    volumes:
+      - ./portfolio:/data
+      - ./web:/app/web:ro
+      - ./src:/app/src:ro
+    environment:
+      - PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
+      - PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium
+      - HOME=/tmp
+    shm_size: "2gb"

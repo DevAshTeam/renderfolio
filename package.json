@@ -8,6 +8,7 @@
   },
   "scripts": {
     "start": "node bin/renderfolio.js",
+    "web": "node web/server.js",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch"
   },
@@ -31,7 +32,8 @@
     "fs-extra": "^11.4.0",
     "gray-matter": "^4.0.3",
     "markdown-it": "^15.0.1",
-    "playwright": "^1.62.1"
+    "playwright": "^1.62.1",
+    "express": "5.2.1"
   },
   "devDependencies": {
     "jest": "^30.5.2"
