@@ -1,6 +1,7 @@
 name = "renderfolio"
 main = "src/worker.js"
 compatibility_date = "2025-06-01"
+compatibility_flags = ["nodejs_compat"] 
 
 [assets]
 directory = "./public"
