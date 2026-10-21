@@ -1,8 +1,8 @@
-import puppeteer from '@cloudflare/puppeteer';
+import { launch } from "@cloudflare/playwright";
 import { createApp } from '../../web/routes.js';
 
 const pdfWithBrowser = async (env, resumeHtml) => {
-  const browser = await puppeteer.launch(env.BROWSER);
+  const browser = await launch(env.BROWSER);
   try {
     const page = await browser.newPage();
     await page.setContent(resumeHtml, { waitUntil: 'networkidle0' });
